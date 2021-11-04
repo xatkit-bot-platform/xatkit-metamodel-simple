@@ -29,6 +29,15 @@ public class Bot {
      * List of states for the bot.
      */
     private List<State> states;
+    
+    /**
+     * Creates a {@link Bot}.
+     */
+    public Bot(List<Intent> intents, List<IntentParameterType> types, List<State> states) {
+        this.intents = intents;
+        this.types = types;
+        this.states = states;
+    }
 
     /**
      * Creates an empty {@link Bot}.

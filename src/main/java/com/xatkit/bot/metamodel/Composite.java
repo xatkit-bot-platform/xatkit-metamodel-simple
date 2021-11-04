@@ -9,15 +9,15 @@ import java.util.List;
  *
  * @see MappingEntry
  */
-public class Mapping extends IntentParameterType {
+public class Composite extends IntentParameterType {
 
     private String varName;
-    private List<MappingEntry> entries;
+    private List<CompositeEntry> entries;
 
-    public Mapping(String name, String varName) {
+    public Composite(String name, String varName) {
         super(name);
         this.varName = varName;
-        this.entries = new ArrayList<MappingEntry>();
+        this.entries = new ArrayList<CompositeEntry>();
     }
 
     /**
@@ -37,11 +37,11 @@ public class Mapping extends IntentParameterType {
     /**
      * @return the entries
      */
-    public List<MappingEntry> getEntries() {
+    public List<CompositeEntry> getEntries() {
         return this.entries;
     }
 
-    public void addMappingEntry(MappingEntry me) {
-        this.entries.add(me);
+    public void addCompositeEntry(CompositeEntry ce) {
+        this.entries.add(ce);
     }
 }

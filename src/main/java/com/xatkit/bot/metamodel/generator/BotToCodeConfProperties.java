@@ -40,7 +40,7 @@ public class BotToCodeConfProperties {
                 result.setDialogflowProjectId(configuration.getString("xatkit.dialogflow.projectId", null));
                 result.setDialogflowCredentialsPath(configuration.getString("xatkit.dialogflow.credentials.path", "/"));
                 result.setDialogflowLanguage(configuration.getString("xatkit.dialogflow.language", "en-US"));
-                result.setDialogflowCleanOnStartup(configuration.getBoolean("xatkit.dialogflow.clean_on_startup.CLEAN_AGENT_ON_STARTUP_KEY", false));
+                result.setDialogflowCleanOnStartup(configuration.getBoolean("xatkit.dialogflow.clean_on_startup", false));
 
                 return result;
         }

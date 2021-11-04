@@ -5,6 +5,7 @@ import java.util.List
 import com.xatkit.bot.metamodel.IntentParameter
 import com.xatkit.bot.metamodel.CoreIntentParameterType
 import com.xatkit.bot.metamodel.Mapping
+import com.xatkit.bot.metamodel.Composite
 
 class IntentGenerator {
 	
@@ -39,9 +40,11 @@ class IntentGenerator {
 		.fromFragment("«p.getFragment()»")
 		«IF p.getType() instanceof CoreIntentParameterType » 
 		««« Primitive Paremeter types use "()" next to the name in our syntax
-		.entity(«p.getType().getName»())
+		.entity(DSL.«p.getType().getName»())
 		«ELSEIF p.getType() instanceof Mapping»
 		.entity(«(p.getType() as Mapping).getVarName»)
+		«ELSEIF p.getType() instanceof Composite»
+		.entity((EntityDefinitionReferenceProvider) «(p.getType() as Composite).getVarName»)
 		«ELSE»
 		.entity(«p.getType().getName»)
 		«ENDIF»

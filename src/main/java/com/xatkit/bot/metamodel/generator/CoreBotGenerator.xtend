@@ -8,7 +8,11 @@ class CoreBotGenerator {
 		var String botName = conf.getBotName();
 		var String defaultFallbackMsg = conf.getDefaultFallbackMsg();
 		'''
+		import com.opencsv.CSVReader;
+		import com.opencsv.exceptions.CsvException;
 		import com.xatkit.core.XatkitBot;
+		import com.xatkit.dsl.DSL;		
+		import com.xatkit.dsl.entity.EntityDefinitionReferenceProvider;
 		import com.xatkit.plugins.react.platform.ReactPlatform;
 		import com.xatkit.plugins.react.platform.io.ReactEventProvider;
 		import com.xatkit.plugins.react.platform.io.ReactIntentProvider;
@@ -17,18 +21,24 @@ class CoreBotGenerator {
 		import org.apache.commons.configuration2.Configuration;
 		import org.apache.commons.configuration2.builder.fluent.Configurations;
 		import org.apache.commons.configuration2.ex.ConfigurationException;
-		import java.io.File;
-		import java.util.Arrays;
-		import java.util.Map;
-		import java.util.HashMap;
+		import org.apache.commons.lang3.tuple.ImmutableTriple;
 		
+		import java.io.FileReader;
+		import java.io.IOException;
+		import java.util.ArrayList;
+		import java.util.Arrays;
+		import java.util.List;
+		import java.util.Map;
+		import java.util.stream.Collectors;
+		
+		import static com.xatkit.dsl.DSL.composite;
 		import static com.xatkit.dsl.DSL.eventIs;
 		import static com.xatkit.dsl.DSL.fallbackState;
 		import static com.xatkit.dsl.DSL.intent;
 		import static com.xatkit.dsl.DSL.intentIs;
+		import static com.xatkit.dsl.DSL.mapping;
 		import static com.xatkit.dsl.DSL.model;
 		import static com.xatkit.dsl.DSL.state;
-		import static com.xatkit.dsl.DSL.mapping;
 		
 		/*
 		 * This is a generated bot from «conf.getInputDocName()»
@@ -42,6 +52,11 @@ class CoreBotGenerator {
 			 */
 			«MappingGenerator.mappingsTemplate(bot.getTypes())»
 			
+			/*
+			 * Define the composite entities our bot will use.
+			 */
+			«CompositeGenerator.compositesTemplate(bot.getTypes())»
+						
 			/*
 			 * Define the intents our bot will react to.
 			 */

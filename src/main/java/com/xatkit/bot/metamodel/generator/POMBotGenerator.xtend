@@ -28,9 +28,15 @@ class POMBotGenerator {
 			        <assertj.version>3.14.0</assertj.version>
 			        <mockito-version>3.3.3</mockito-version>
 			        <lombok.version>1.18.12</lombok.version>
+			        <opencsv.version>5.5.2</opencsv.version>
 			    </properties>
 			
 			    <dependencies>
+			
+			        <dependency>
+			            <groupId>com.opencsv</groupId>
+			            <artifactId>opencsv</artifactId>
+			        </dependency>
 			
 			        <!-- Xatkit Internal -->
 			
@@ -80,6 +86,12 @@ class POMBotGenerator {
 			
 			    <dependencyManagement>
 			        <dependencies>
+			
+			            <dependency>
+			                <groupId>com.opencsv</groupId>
+			                <artifactId>opencsv</artifactId>
+			                <version>${opencsv.version}</version>
+			            </dependency>
 			
 			            <!-- Utils -->
 			
